@@ -1,6 +1,7 @@
 const User = require('./User');
 const Event = require('./Event');
 const Wishitem = require('./Wishitem');
+const Member = require('./Member');
 
 User.hasMany(Event, {
     foreignKey: 'user_id'
@@ -16,4 +17,20 @@ User.hasMany(Wishitem, {
 
 Wishitem.belongsTo(User, {
     foreignKey: 'user_id'
+});
+
+User.hasMany(Member,{
+    foreignKey: 'user_id'
+});
+
+Member.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+Event.hasMany(Member, {
+    foreignKey: 'event_id'
+});
+
+Member.belongsTo(Event, {
+    foreignKey: 'event_id'
 });
