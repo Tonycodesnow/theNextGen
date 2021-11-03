@@ -45,7 +45,6 @@ User.init(
             validate: {
                 len: [10]//validate phone number len is 10 digit
             }
-
         },
     },
     {
