@@ -34,3 +34,5 @@ Event.hasMany(Member, {
 Member.belongsTo(Event, {
     foreignKey: 'event_id'
 });
+
+module.exports = { User, Event, Member , Wishitem };
