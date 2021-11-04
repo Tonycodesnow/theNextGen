@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User , Event} = require('../../models');
+const {User , Event, Member} = require('../../models');
 
 //get all events
 router.get('/' , (req, res) => {
@@ -9,6 +9,10 @@ router.get('/' , (req, res) => {
             {
                 model: User,
                 attributes: ['first_name', 'last_name', 'email', 'id']
+            },
+            {
+                model: Member,
+                attributes: ['user_id', 'email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
             }
         ]
     })
@@ -29,6 +33,10 @@ router.get('/:id' , (req, res) => {
             {
                 model: User,
                 attributes: ['first_name', 'last_name', 'email', 'id']
+            },
+            {
+                model: Member,
+                attributes: ['email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
             }
         ]
     })

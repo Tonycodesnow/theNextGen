@@ -14,7 +14,7 @@ router.get('/' , (req, res) => {
                 model: Wishitem,
                 attributes: ['name','item_url']
             }
-        ]
+        ], 
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
