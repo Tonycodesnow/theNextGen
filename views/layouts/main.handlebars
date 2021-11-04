@@ -21,17 +21,25 @@
     <!--CSS-->
     <link rel="stylesheet" href="/css/style.css" />
 
+
+    <!--Lottie js player-->
+     <script
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+    ></script>
+
     <title>Gitfby</title>
   </head>
   <body>
     <header>
-      navbar
+      {{> navbar}}
     </header>
     <div class="container">
       {{{body}}}
     </div>
+    
     <footer>
-      Gitfby
+      <div>Gitfby</div>
+      <div><a href="/privacy-policy">Privacy Policy</a></div>
     </footer>
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
