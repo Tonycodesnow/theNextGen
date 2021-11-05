@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const router = require("express").Router();
 
 //GET home page
@@ -22,9 +21,3 @@ router.get("/icons", (req, res) => {
 });
 
 module.exports = router;
-=======
-const router = require('express').Router();
-
-
-module.exports = router;
->>>>>>> 6c14a2446117c9b43d20b4d297f3f9a1ce21a2f8

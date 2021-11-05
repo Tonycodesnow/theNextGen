@@ -1,43 +1,25 @@
-<<<<<<< HEAD
 const express = require("express");
 const routes = require("./controllers");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const hbs = exphbs.create();
-=======
-const express = require('express');
-const routes = require('./controllers');
-const sequelize = require('./config/connection');
-const path = require('path');
-//const exphbs = require('express-handlebars');
-//const hbs = exphbs.create();
-const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
->>>>>>> 6c14a2446117c9b43d20b4d297f3f9a1ce21a2f8
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, "public")));
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(routes);
-=======
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.engine('handlebars', hbs.engine);
-// app.set('view engine', 'handlebars');
->>>>>>> 6c14a2446117c9b43d20b4d297f3f9a1ce21a2f8
 
 // const sequelize = require("./config/connection");
 // const session = require("express-session");
 // const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-<<<<<<< HEAD
 // const sess = {
 //   secret: "Super secret secret", //need to be env variable
 //   cookie: {},
@@ -47,9 +29,6 @@ app.use(routes);
 //     db: sequelize,
 //   }),
 // };
-=======
-app.use(routes);
->>>>>>> 6c14a2446117c9b43d20b4d297f3f9a1ce21a2f8
 
 // app.use(session(sess));
 
