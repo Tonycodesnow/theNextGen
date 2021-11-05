@@ -131,6 +131,11 @@ a{
     color: var(--lighter-blue-color);
 }
 
+.main-button:hover{
+    background-color:var(--sky-blue-color);
+    color: var(--dark-blue-color);
+}
+
 
 
 .margin-top-30{
