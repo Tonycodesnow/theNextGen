@@ -5,6 +5,10 @@ class Member extends Model {};
 
 Member.init(
     {
+    name: {
+        type: DataTypes.STRING,
+        allowNull: true
+            },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
