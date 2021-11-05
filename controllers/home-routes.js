@@ -20,4 +20,9 @@ router.get("/icons", (req, res) => {
   res.render("icons");
 });
 
+//Get owner page
+router.get("/owner", (req, res) => {
+  res.render("owner");
+});
+
 module.exports = router;
