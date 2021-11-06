@@ -1,18 +1,18 @@
-const  User = require('../models/User');
+const  User = require('../models/User.js');
 
 const usersData = [
     {
+        first_name: 'Dr. Ross',
+        last_name: 'Geller',
+        email: 'Geller@gmail.com',  // email
         password: '123456',
-        email: 'email@email.com',  // email
-        first_name: 'Adam',
-        last_name: 'First',
         phone: '5555555555'
     },
     {
+        first_name: 'Chandler',
+        last_name: 'Bing',
+        email: 'BingEmail@gmail.com',  // email
         password: '123456',
-        email: 'email1@email.com',  // email
-        first_name: 'Eve',
-        last_name: 'Last',
         phone: '3333333333',
     }
 ];
