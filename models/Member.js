@@ -1,14 +1,30 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Member extends Model {};
+class Member extends Model {
+    inviteMember() {
+        // code to send invite notification 
+        //update database invitationDate
+    }
+    inviteResponse() {
+        //send notification
+        //update database user_id accepted and acceptedDate
+    }
+    lottery() {
+        //make lottery anf update  give and recieve
+        //email notification
 
-Member.init(
+        //need to update Event
+    }
+
+
+};
+
+Member.init(    
     {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         isEmail: true
     },
     accepted: {
