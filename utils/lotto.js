@@ -33,5 +33,5 @@ shuffleMembers();
 // in to gifts each
 
 module.exports = {
-  shuffle,
+  shuffleMembers,
 };
