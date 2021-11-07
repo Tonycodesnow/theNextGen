@@ -25,6 +25,10 @@ body {
     background-color: var(--lighter-blue-color);
 }
 
+h1,h2,h3,h4,h5,h6 {
+    font-family: Georgia,serif;
+}
+
 footer {
     margin-top: auto;
     background-color: var(--dark-blue-color);
@@ -136,6 +140,21 @@ a{
     color: var(--dark-blue-color);
 }
 
+.event-button {
+    background-color: var(--dark-blue-color);
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 30px;
+    padding: 5px 20px;
+    color: var(--lighter-blue-color);
+}
+
+.event-button:hover {
+    background-color: var(--sky-blue-color);
+    color: var(--dark-blue-color);
+}
+
+
 
 
 .margin-top-30{
@@ -170,6 +189,28 @@ a{
 
 .alert{
     display: none;
+}
+
+.card-event{
+    width: 100%;
+    border: 1px solid var(--dark-blue-color);
+    border-radius: 1rem;
+}
+
+.card-event .title{
+    font-size: 1.25rem;
+    font-weight: bold;
+    color:var(--dark-blue-color)
+}
+
+.card-event .description{
+    font-size: 1.1rem;
+}
+
+.card-event .party-date{
+    font-size: 1.1rem;
+    color: var(--dark-blue-color);
+    
 }
 
 
