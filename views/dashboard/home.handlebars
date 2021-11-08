@@ -3,7 +3,7 @@
   {{lastName}}</h1>
 <div class="d-flex justify-content-center mt-4">
   <a
-    href="/dashboard/my-wishlist/{{user.id}}"
+    href="/dashboard/my-wishlist/{{id}}"
     class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s"
   >
     <i class="fas fa-clipboard-check"></i>
@@ -32,8 +32,8 @@
           <p class="description">{{event.description}}</p>
           <div class="d-flex justify-content-end">
             <div class="event-button">
-              <a href="event/{{event.id}}" class="btn event-button">
-                View
+              <a href="event/{{event.id}}" class="btn btn-default btn-circle">
+                <i class="far fa-eye"></i>
               </a>
             </div>
           </div>

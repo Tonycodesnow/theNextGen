@@ -26,7 +26,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {
-   font-family: 'Righteous',cursive;
+   font-family: 'Noto Sans',sans-serif;
 }
 
 footer {
@@ -162,8 +162,7 @@ a{
     background-color: var(--main-color);
     font-size: 1rem;
     text-align: center;
-    border-radius: 30px;
-    padding: 5px 20px;
+    border-radius: 50%;
     color: var(--white-color);
 }
 
@@ -172,7 +171,23 @@ a{
     color: var(--main-color);
 }
 
+.btn-circle {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 24px;
+}
 
+.btn-gifty{
+    background-color: var(--main-color) !important;
+    color: var(--white-color) !important;
+}
 
 
 .margin-top-30{
@@ -236,6 +251,14 @@ form div textarea{
     border: 1px solid var(--main-color) !important;
     border-radius: 0.75rem !important;
     font-size: 1.25rem !important;
+}
+
+
+.my-items{
+    margin:10px 0px 0px 0px;
+    border-radius: 0.75rem;
+    width: 100%;
+    padding-top: 10px;
 }
 
 
