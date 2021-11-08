@@ -2,8 +2,11 @@ const router = require("express").Router();
 
 //Get User Dashboard
 router.get("/", (req, res) => {
+  //Need the req.session.user.id;
+
   const data = {
     user: {
+      id: 1,
       firstName: "John",
       lastName: "Doe",
       events: [
@@ -18,7 +21,7 @@ router.get("/", (req, res) => {
         },
         {
           id: 2,
-          name: "Event 2",
+          name: "Secret Santa Company",
           description: "This is the first event",
           lottery_date: "2020-01-01",
           budget: "10",
@@ -37,7 +40,7 @@ router.get("/", (req, res) => {
 //Get Event Information
 router.get("/event/:id", (req, res) => {
   //Get Event Information from database
-
+ //TODO : If is onwer add extra functionality
   const data = {
     event: {
       id: 1,
@@ -105,6 +108,31 @@ router.get("/member-wishlist/:id", (req, res) => {
     },
   };
   res.render("dashboard/member-wishlist", data);
+});
+
+//Get My-Wishlist
+router.get("/my-wishlist/:id", (req, res) => {
+  //Get Member Information from database
+  const userId = req.params.id;
+  const data = {
+    user: {
+      id: 1,
+      firstName: "John",
+      lastName: "Doe",
+      email: "part-1@gmail.com",
+      wishitems: [
+        {
+          name: "Item 1",
+          item_url: "https://www.amazon.com/",
+        },
+        {
+          name: "Item 2",
+          item_url: "https://www.amazon.com/",
+        },
+      ],
+    },
+  };
+  res.render("dashboard/my-wishlist", data);
 });
 
 module.exports = router;
