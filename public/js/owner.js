@@ -1,22 +1,22 @@
 async function loginformHandle(event) {
   event.preventDefault();
 
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
+  const first_name = document.getElementById("firstName").value;
+  const last_name = document.getElementById("lastName").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   const data = {
     email,
     password,
-    firstName,
-    lastName,
+    first_name,
+    last_name,
   };
 
   console.log(data);
 
   //Call the api
-  const response = await fetch("/api/users/create-owner", {
+  const response = await fetch("/api/users", {
     method: "POST",
     headers: {
       "Content-type": "application/json",

@@ -1,110 +1,109 @@
 const router = require("express").Router();
+const withAuth = require("../utils/auth");
+const { User, Event, Member, Wishitem } = require("../models");
 
 //Get User Dashboard
-router.get("/", (req, res) => {
-  const data = {
-    user: {
-      firstName: "John",
-      lastName: "Doe",
-      events: [
-        {
-          id: 1,
-          name: "Secret Santa Web Bootcamp",
-          description: "This is the first event",
-          lottery_date: "2020-01-01",
-          budget: "10",
-          party_date: "2021-11-07",
-          status: "active",
-        },
-        {
-          id: 2,
-          name: "Event 2",
-          description: "This is the first event",
-          lottery_date: "2020-01-01",
-          budget: "10",
-          party_date: "2021-12-10",
-          status: "past",
-        },
-      ],
+router.get("/", withAuth, (req, res) => {
+  User.findOne({
+    where: {
+      id: req.session.user_id,
     },
-
-    loggedIn: req.session.loggedIn,
-  };
-
-  res.render("dashboard/home", data);
+    attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Event,
+        attributes: [
+          "id",
+          "name",
+          "description",
+          "lottery_date",
+          "budget",
+          "party_date",
+        ],
+      },
+      {
+        model: Wishitem,
+        attributes: ["name", "item_url"],
+      },
+    ],
+  })
+    .then(dbUserData => {
+      dbUserData = dbUserData.get({plain:true});
+      res.render('dashboard/home', dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 //Get Event Information
 router.get("/event/:id", (req, res) => {
   //Get Event Information from database
-
-  const data = {
-    event: {
-      id: 1,
-      name: "Secret Santa Web Bootcamp",
-      description: "This is the first event",
-      lottery_date: "2020-01-01",
-      budget: "10",
-      party_date: "2020-01-01",
-      status: "active",
-      user_id: 1,
-      user: {
-        firstName: "John",
-        lastName: "Doe",
-      },
-      members: [
-        {
-          id: 1,
-          firstName: "John",
-          lastName: "Doe",
-          email: "p-1@gmail.com",
-          accepted: true,
-        },
-        {
-          id: 2,
-          firstName: "Jane",
-          lastName: "Doe",
-          email: "p-2@gmail.com",
-          accepted: false,
-        },
-        {
-          id: 3,
-          firstName: "Jack",
-          lastName: "Doe",
-          email: "p-3@gmail.com",
-          accepted: true,
-        },
-      ],
+  Event.findOne({
+    where: {
+        id: req.params.id
     },
-
-    loggedIn: req.session.loggedIn,
-  };
-  res.render("dashboard/event", data);
+    include: [
+        {
+            model: User,
+            attributes: ['first_name', 'last_name', 'email', 'id']
+        },
+        {
+            model: Member,
+            attributes: ['email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
+        }
+    ]
+})
+    .then(dbEventData => {
+        if (!dbEventData) {
+            res.status(404).json({message: 'No event found with this id'});
+            return;
+        }
+        dbEventData = dbEventData.get({plain:true});
+        res.render("dashboard/event", dbEventData);
+    })
+    .catch(err =>{
+        console.error(err);
+        res.status(500).json(err);
+    });
 });
 
-//Get Member Wishlist
+//Get USER Wishlist
 router.get("/member-wishlist/:id", (req, res) => {
-  //Get Member Information from database
-  const userId = req.params.id;
-  const data = {
-    user: {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      email: "part-1@gmail.com",
-      wishitems: [
-        {
-          name: "Item 1",
-          item_url: "https://www.amazon.com/",
-        },
-        {
-          name: "Item 2",
-          item_url: "https://www.amazon.com/",
-        },
-      ],
+  //Get USER Information from database
+  User.findOne({
+    where: {
+      id: req.params.id,
     },
-  };
-  res.render("dashboard/member-wishlist", data);
+    attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Event,
+        attributes: [
+          "id",
+          "name",
+          "description",
+          "lottery_date",
+          "budget",
+          "party_date",
+        ],
+      },
+      {
+        model: Wishitem,
+        attributes: ["name", "item_url"],
+      },
+    ],
+  })
+    .then(dbUserData => {
+      dbUserData = dbUserData.get({plain:true});
+      res.render("dashboard/member-wishlist", dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+
 });
 
 module.exports = router;
