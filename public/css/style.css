@@ -129,9 +129,9 @@ a{
 }
 
 .sub-title {
-    
-    font-family: Georgia, serif;
-    letter-spacing: 5px;
+    font-family: 'Noto Sans',sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
     font-size: 2rem;
 }
 
