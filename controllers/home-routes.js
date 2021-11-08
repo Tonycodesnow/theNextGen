@@ -31,6 +31,10 @@ router.get("/owner", (req, res) => {
   res.render("owner");
 });
 
+router.get("/invite", (req, res) => {
+  res.render("invite");
+})
+
 
 
 module.exports = router;

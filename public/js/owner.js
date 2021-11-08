@@ -25,7 +25,7 @@ async function loginformHandle(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/"); //TODO: After creating account we should create event
   } else {
     showAlertMessage();
   }
