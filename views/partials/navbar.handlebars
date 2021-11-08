@@ -12,9 +12,15 @@
     </div>
     <div class="nav-items">
       <ul>
-        <li>
-          <a href="/login">Login</a>
-        </li>
+        {{#if loggedIn}}
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+        {{else}}
+          <li>
+            <a href="/login">Login</a>
+          </li>
+        {{/if}}
       </ul>
     </div>
   </div>

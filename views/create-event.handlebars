@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center mb-3">
   <h1 class="sub-title fade-in-text">
-    Your Information
+    Create Your Event
   </h1>
 </div>
 <div class="row">
@@ -10,42 +10,50 @@
         <input
           type="text"
           class="form-control my-input"
-          id="firstName"
-          placeholder="First Name"
+          id="name"
+          placeholder="Event Name"
           required
         />
-        <label for="email">First Name</label>
+        <label for="name">Event Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          placeholder="Event description"
+          id="description"
+        ></textarea>
+        <label for="description">Description</label>
       </div>
       <div class="form-floating mb-3">
         <input
-          type="text"
+          type="number"
           class="form-control my-input"
-          id="lastName"
-          placeholder="Last Name"
+          id="budget"
+          placeholder="Budget"
           required
+          style="text-align: right;"
         />
-        <label for="email">Last Name</label>
+        <label for="budget">Budget</label>
       </div>
       <div class="form-floating mb-3">
         <input
-          type="email"
+          type="date"
           class="form-control my-input"
-          id="email"
-          placeholder="name@example.com"
+          id="lottery_date"
+          placeholder="Lottery Date"
           required
         />
-        <label for="email">Email address</label>
+        <label for="lottery_date">Lottery Date</label>
       </div>
-      <div class="form-floating">
+      <div class="form-floating mb-3">
         <input
-          type="password"
+          type="date"
           class="form-control my-input"
-          id="password"
-          placeholder="Password"
-          minlength="6"
+          id="party_date"
+          placeholder="Party Date"
           required
         />
-        <label for="password">Password</label>
+        <label for="party_date">Party Date</label>
       </div>
       <div class="d-flex justify-content-center mt-3">
         <button class="btn main-button btn-lg btn-block">
@@ -62,4 +70,4 @@
   </div>
 </div>
 
-<script src="/js/owner.js"></script>
+<script src="/js/create-event.js"></script>

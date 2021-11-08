@@ -153,8 +153,9 @@ a{
 }
 
 .main-button:hover{
-    background-color:var(--sky-blue-color);
+    background-color:var(--white-color);
     color: var(--main-color);
+    border: 1px solid var(--main-color);
 }
 
 .event-button {
@@ -228,6 +229,13 @@ a{
     font-size: 1.1rem;
     color: var(--main-color);
     
+}
+
+form div textarea{
+    height: 100px !important;
+    border: 1px solid var(--main-color) !important;
+    border-radius: 0.75rem !important;
+    font-size: 1.25rem !important;
 }
 
 
