@@ -25,6 +25,13 @@ router.get("/owner", (req, res) => {
   res.render("owner");
 });
 
+//Get Accept Memger page
+router.get("/accept-member/:id", (req, res) => {
+  // eventId=req.params.id;
+  //POST new validate if the email of the user if on the invitation.
+  //Get Event information db
 
+  res.render("accept-member");
+});
 
 module.exports = router;
