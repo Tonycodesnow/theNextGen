@@ -13,7 +13,10 @@ async function loginformHandle(event) {
     last_name,
   };
 
-  console.log(data);
+  if (!validateEmail(data.email)) {
+    showAlertMessage("Please enter a valid email address");
+    return;
+  }
 
   //Call the api
   const response = await fetch("/api/users", {
@@ -25,17 +28,19 @@ async function loginformHandle(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/"); //TODO: After creating account we should create event
+
+    document.location.replace("/create-event");
+
   } else {
-    showAlertMessage();
+    showAlertMessage(response.statusText);
   }
 }
 
-function showAlertMessage() {
+function showAlertMessage(message) {
   const alert = document.querySelector(".alert");
   const spanText = document.querySelector(".alert-text");
 
-  spanText.innerText = "Invalid email or password";
+  spanText.innerText = message;
   alert.style.display = "block";
 }
 
