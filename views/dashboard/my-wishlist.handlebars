@@ -1,4 +1,12 @@
-<h1 class="mb-3">My Wishlist</h1>
+<div class="d-flex justify-content-end">
+  <a href="/dashboard">
+    <i class="fas fa-angle-double-left"></i>
+    Back
+  </a>
+</div>
+<h1 class="my-3">
+  {{user.first_name}}
+  {{user.last_name}}, add items to your wishlist</h1>
 
 <div class="row">
   <div class="col-12">
@@ -7,11 +15,11 @@
         type="text"
         class="form-control my-input"
         id="name"
-        placeholder="Item Name"
+        placeholder="Name"
         required
         maxlength="50"
       />
-      <label for="email">Item Name</label>
+      <label for="name">Name</label>
     </div>
   </div>
   <div class="col-12">
@@ -20,10 +28,10 @@
         type="text"
         class="form-control my-input"
         id="item_url"
-        placeholder="Item Url"
+        placeholder="Url"
         maxlength="255"
       />
-      <label for="email">Item Url</label>
+      <label for="item_url">Url</label>
     </div>
   </div>
   <div class="col-12 mt-3">
@@ -40,10 +48,10 @@
   </div>
 </div>
 
-<div class="container-fluid my-items shadow">
+<div class="container-fluid my-items shadow-lg mt-3">
   <div class="row mt-4">
     <div class="d-flex justify-content-center">
-      <h2 class="mb-3">My List</h2>
+      <h2 class="mb-3">{{user.first_name}} Wishlist</h2>
     </div>
   </div>
 

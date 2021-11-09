@@ -1,9 +1,9 @@
 <h1 class="animate__animated animate__slideInLeft">Welcome
-  {{firstName}}
-  {{lastName}}</h1>
+  {{user.first_name}}
+  {{user.last_name}}</h1>
 <div class="d-flex justify-content-center mt-4">
   <a
-    href="/dashboard/my-wishlist/{{id}}"
+    href="/dashboard/my-wishlist/{{user.id}}"
     class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s"
   >
     <i class="fas fa-clipboard-check"></i>
@@ -16,7 +16,7 @@
     <div class="d-flex justify-content-center mb-3">
       <h2>My Events</h2>
     </div>
-    {{#each events as |event|}}
+    {{#each user.events as |event|}}
       <div class="card card-event mb-2">
         <div class="card-body">
           <div class="d-flex justify-content-start">
@@ -32,7 +32,10 @@
           <p class="description">{{event.description}}</p>
           <div class="d-flex justify-content-end">
             <div class="event-button">
-              <a href="event/{{event.id}}" class="btn btn-default btn-circle">
+              <a
+                href="dashboard/event/{{event.id}}"
+                class="btn btn-default btn-giftby btn-circle"
+              >
                 <i class="far fa-eye"></i>
               </a>
             </div>

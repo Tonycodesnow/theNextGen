@@ -28,8 +28,8 @@ router.get("/", withAuth, (req, res) => {
     ],
   })
     .then((dbUserData) => {
-      dbUserData = dbUserData.get({ plain: true });
-      res.render("dashboard/home", dbUserData);
+      const user = dbUserData.get({ plain: true });
+      res.render("dashboard/home", { user, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
@@ -68,8 +68,9 @@ router.get("/event/:id", (req, res) => {
         res.status(404).json({ message: "No event found with this id" });
         return;
       }
-      dbEventData = dbEventData.get({ plain: true });
-      res.render("dashboard/event", dbEventData);
+      const event = dbEventData.get({ plain: true });
+      console.log(event);
+      res.render("dashboard/event", { event, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.error(err);
@@ -77,9 +78,8 @@ router.get("/event/:id", (req, res) => {
     });
 });
 
-//Get USER Wishlist
-router.get("/member-wishlist/:id", (req, res) => {
-  //Get USER Information from database
+//Get My-Wishlist
+router.get("/my-wishlist/:id", (req, res) => {
   User.findOne({
     where: {
       id: req.params.id,
@@ -104,38 +104,16 @@ router.get("/member-wishlist/:id", (req, res) => {
     ],
   })
     .then((dbUserData) => {
-      dbUserData = dbUserData.get({ plain: true });
-      res.render("dashboard/member-wishlist", dbUserData);
+      const user = dbUserData.get({ plain: true });
+      res.render("dashboard/my-wishlist", {
+        user,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-//Get My-Wishlist
-router.get("/my-wishlist/:id", (req, res) => {
-  //Get Member Information from database
-  const userId = req.params.id;
-  const data = {
-    user: {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      email: "part-1@gmail.com",
-      wishitems: [
-        {
-          name: "Item 1",
-          item_url: "https://www.amazon.com/",
-        },
-        {
-          name: "Item 2",
-          item_url: "https://www.amazon.com/",
-        },
-      ],
-    },
-  };
-  res.render("dashboard/my-wishlist", data);
 });
 
 module.exports = router;

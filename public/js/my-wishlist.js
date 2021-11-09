@@ -4,7 +4,6 @@ const divItems = document.getElementById("divItems");
 const itemName = document.getElementById("name");
 const itemUrl = document.getElementById("item_url");
 
-
 document.addEventListener("DOMContentLoaded", async () => {
   await getItems();
 });
@@ -14,6 +13,10 @@ async function addItemHandler(event) {
     name: itemName.value,
     item_url: itemUrl.value,
   };
+  if (item.name === "" || item.item_url === "") {
+    alert("Please fill all the fields");
+    return;
+  }
   await postItem(item);
   itemName.value = "";
   itemUrl.value = "";
@@ -40,7 +43,7 @@ function renderItems(items) {
                     <i data-id="${item.id}" class="fas fa-trash-alt delete-item"></i>
                     </a>
                     <a
-                    class="btn btn-default btn-gifty btn-circle"
+                    class="btn btn-default btn-giftby btn-circle"
                     href=${item.item_url}
                     target="_blank"
                     >
