@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Event } = require("../models");
 
 //GET home page
 router.get("/", (req, res) => {
@@ -42,12 +43,31 @@ router.get("/invite-to-event/:id", (req, res) => {
 });
 
 //Get Accept Memger page
-router.get("/accept-member/:id", (req, res) => {
+router.get("/member-signup/:id", (req, res) => {
   // eventId=req.params.id;
-  //POST new validate if the email of the user if on the invitation.
   //Get Event information db
+  Event.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbEventData) => {
+      if (!dbEventData) {
+        res.status(404).json({ message: "No event found with this id" });
+        return;
+      }
+      const event = dbEventData.get({ plain: true });
 
-  res.render("accept-member", { loggedIn: req.session.loggedIn });
+      res.render("member-signup", {
+        layout: "login",
+        loggedIn: req.session.loggedIn,
+        event,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
