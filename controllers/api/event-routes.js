@@ -36,7 +36,7 @@ router.get('/:id' , (req, res) => {
             },
             {
                 model: Member,
-                attributes: ['email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
+                attributes: ['name','email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
             }
         ]
     })
@@ -92,5 +92,31 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 })
+
+//TODO: shuffle/lottery
+router.post('/lottery/:id', (req, res) => {
+    Member.findAll({
+        where: {
+            event_id: req.params.id,
+            accepted: true,
+            giveToUser: null
+        }
+    })
+        .then(dbMemberData => {
+            if (!dbMemberData) {
+                res(404).json({"message": 'There are no members to shuffle for this event id'});
+                return;
+            }
+            //valdiation <3 ?
+            //do lottery
+            //update database
+            //send notifications ? with hook?
+            res.json(dbMemberData);
+        })
+        .catch(err => {
+            console.error(err);
+            res(500).json(err);
+        });
+});
 
 module.exports = router;

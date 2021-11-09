@@ -38,12 +38,12 @@ router.get("/create-event", (req, res) => {
 
 router.get("/invite/:id", (req, res) => {
   res.render("invite");
-})
-
-
-
-  res.render("invite-to-event", { loggedIn: req.session.loggedIn });
 });
+
+
+
+//   res.render("invite-to-event", { loggedIn: req.session.loggedIn });
+// });
 
 //Get Accept Memger page
 router.get("/member-signup/:id", (req, res) => {

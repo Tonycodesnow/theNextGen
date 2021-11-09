@@ -53,6 +53,7 @@ router.get("/event/:id", (req, res) => {
       {
         model: Member,
         attributes: [
+          "name",
           "email",
           "accepted",
           "acceptedDate",
