@@ -1,8 +1,10 @@
-let items = [];
-
 const divItems = document.getElementById("divItems");
 const itemName = document.getElementById("name");
 const itemUrl = document.getElementById("item_url");
+
+const userId = window.location.toString().split("/")[
+  window.location.toString().split("/").length - 1
+];
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getItems();
@@ -13,6 +15,7 @@ async function addItemHandler(event) {
     name: itemName.value,
     item_url: itemUrl.value,
   };
+
   if (item.name === "" || item.item_url === "") {
     alert("Please fill all the fields");
     return;
@@ -25,6 +28,7 @@ async function addItemHandler(event) {
 function renderItems(items) {
   divItems.innerHTML = "";
 
+  console.log(items);
   items.map((item) => {
     const divItem = document.createElement("div");
     divItem.innerHTML = `
@@ -74,9 +78,10 @@ async function postItem(item) {
 }
 
 async function getItems() {
-  const response = await fetch("/api/wishitems");
+  const response = await fetch(`/api/users/${userId}`);
   const data = await response.json();
-  items = data;
+  console.log(data);
+  items = data.wishitems;
   renderItems(items);
 }
 
