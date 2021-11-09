@@ -1,7 +1,7 @@
 
-function buildInvitation(event,emailList) {
+function buildInvitation(event) {
 //create email list
-// const emailList= event.members.map(member => member.email);
+const emailList= event.members.map(member => member.email);
 
 //create invitation body
 const htmlBody= `<h2>You're Invited to ${event.user.first_name}'s ${event.name}</h2>

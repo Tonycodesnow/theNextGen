@@ -31,7 +31,7 @@ router.get("/owner", (req, res) => {
   res.render("owner");
 });
 
-router.get("/invite", (req, res) => {
+router.get("/invite/:id", (req, res) => {
   res.render("invite");
 })
 

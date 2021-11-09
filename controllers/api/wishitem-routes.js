@@ -77,4 +77,23 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    Wishitem.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(dbWishitem => {
+            if(!dbWishitem) {
+                res.status(404).json({ message: 'No wishitem found with this id'});
+                return;
+            }
+            res.json(dbWishitem);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json(err);
+        })
+})
+
 module.exports = router;
