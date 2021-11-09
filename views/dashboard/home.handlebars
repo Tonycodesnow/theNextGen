@@ -1,13 +1,20 @@
 <h1 class="animate__animated animate__slideInLeft">Welcome
   {{user.first_name}}
   {{user.last_name}}</h1>
-<div class="d-flex justify-content-center mt-4">
+<div class="d-flex flex-column align-items-center mt-4">
   <a
     href="/dashboard/my-wishlist/{{user.id}}"
-    class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s"
+    class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s mb-3"
   >
     <i class="fas fa-clipboard-check"></i>
     My Wish List
+  </a>
+  <a
+    href="/create-event"
+    class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s"
+  >
+    <i class="fas fa-plus"></i>
+    Create Event
   </a>
 </div>
 
