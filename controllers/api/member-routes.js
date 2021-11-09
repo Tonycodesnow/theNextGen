@@ -71,6 +71,35 @@ router.post('/', (req, res) =>{
         })
 });
 
+router.post('/invite/:id', (req, res) => {
+    const emailList = req.body.map(member => member.email);
+    Member.bulkCreate(req.body)
+        .then(dbMemberData =>{
+            return Event.findOne({
+                where: {
+                    id: req.params.id,
+                },
+                include: [
+                    {
+                        model: User,
+                        attributes: ['first_name', 'last_name', 'email', 'id']
+                    }]            
+            })
+        })
+        .then(dbEventData => {
+            //send invitation to new members
+            const invitation = buildInvitation(dbEventData,emailList);
+            return sendInvitation(invitation);
+        })
+        .then(dbMemberUpdate => {
+            res.json(dbMemberUpdate);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json(err);
+        })
+})
+
 router.post('/invite', (req, res) => {
     Event.findOne({
         where: {
@@ -119,6 +148,7 @@ router.post('/invite', (req, res) => {
             res.status(500).json(err);
         })
 });
+
 
 
 router.put('/:id', (req, res) => {

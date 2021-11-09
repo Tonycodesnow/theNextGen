@@ -28,7 +28,9 @@ async function loginformHandle(event) {
   });
 
   if (response.ok) {
+
     document.location.replace("/create-event");
+
   } else {
     showAlertMessage(response.statusText);
   }

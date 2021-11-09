@@ -174,6 +174,10 @@ a{
     color: var(--main-color);
 }
 
+
+.add-button {
+    width: 100px;
+
 .btn-circle {
     display: flex;
     flex-direction: column;
@@ -185,6 +189,7 @@ a{
     text-align: center;
     font-size: 18px;
     border-radius: 24px;
+
 }
 
 .btn-giftby{

@@ -35,9 +35,12 @@ router.get("/create-event", (req, res) => {
   res.render("create-event", { loggedIn: req.session.loggedIn });
 });
 
-//Get Invite to Event page
-router.get("/invite-to-event/:id", (req, res) => {
-  //TODO: Need Get Event Information and send to page
+
+router.get("/invite/:id", (req, res) => {
+  res.render("invite");
+})
+
+
 
   res.render("invite-to-event", { loggedIn: req.session.loggedIn });
 });
