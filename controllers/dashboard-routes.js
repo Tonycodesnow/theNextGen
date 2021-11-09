@@ -116,4 +116,46 @@ router.get("/my-wishlist/:id", (req, res) => {
     });
 });
 
+//Get Lottery Event page
+router.get("/lottery/:id", (req, res) => {
+  Event.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["first_name", "last_name", "email", "id"],
+      },
+      {
+        model: Member,
+        attributes: [
+          "email",
+          "accepted",
+          "acceptedDate",
+          "invitationDate",
+          "giveToUser",
+          "receiveFromUser",
+        ],
+      },
+    ],
+  })
+    .then((dbEventData) => {
+      if (!dbEventData) {
+        res.status(404).json({ message: "No event found with this id" });
+        return;
+      }
+      const event = dbEventData.get({ plain: true });
+      console.log(event);
+      res.render("dashboard/lottery", {
+        event,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;

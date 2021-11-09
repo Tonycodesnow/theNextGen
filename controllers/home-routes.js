@@ -35,14 +35,8 @@ router.get("/create-event", (req, res) => {
   res.render("create-event", { loggedIn: req.session.loggedIn });
 });
 
-
 router.get("/invite/:id", (req, res) => {
   res.render("invite");
-})
-
-
-
-  res.render("invite-to-event", { loggedIn: req.session.loggedIn });
 });
 
 //Get Accept Memger page
