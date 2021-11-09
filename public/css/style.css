@@ -1,6 +1,7 @@
 /* Google fonts
-font-family: 'Courgette',cursive;
 font-family: 'Noto Sans',sans-serif;
+font-family: 'Patua One',cursive;
+font-family: 'Righteous',cursive;
 */
 * {
     margin: 0;
@@ -9,11 +10,10 @@ font-family: 'Noto Sans',sans-serif;
 }
 
 :root{  
-    --dark-blue-color:#005792;
-    --sky-blue-color:#53CDE2;
-    --light-blue-color:#D1F4FA;
-    --lighter-blue-color:#EDF9FC;
-    --red-color:#EE8572;
+    --main-color: #3da9f3;
+    --orange-color:#E2BD5A;
+    --light-gray-color:#E8F0F2;
+    --white-color:#FFFFFF;
 }
 
 body {
@@ -22,23 +22,25 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Noto Sans',sans-serif;
-    background-color: var(--lighter-blue-color);
+    background-color: var(--white-color);
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: Georgia,serif;
+   font-family: 'Noto Sans',sans-serif;
 }
 
 footer {
     margin-top: auto;
-    background-color: var(--dark-blue-color);
+    background-color: var(--white-color);
     height: 60px;
-    padding: 10px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: white;
-    font-size: 1.25rem;
+    padding: 15px 15px 10px 15px;
+    font-size: 1rem;
+}
+
+footer .container{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
 }
 
 nav{
@@ -49,14 +51,14 @@ nav{
     height: 80px;
     padding: 0px 10px;
     margin-bottom: 30px;
-    background-color: var(--dark-blue-color);
-    color:white;
+    background-color: var(--white-color);
+    color:#000000;
     font-size: 1.25rem;
 }
 
 a{
     text-decoration: none;
-    color: white;
+    color: #000000;
 }
 
 .container-navbar{
@@ -70,15 +72,28 @@ a{
 
 .nav-logo{
     padding: 0px;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
+    font-size: 2.2rem;
+    letter-spacing: 1.8px;
+    min-height: 70px;
 
 }
 
+.img-logo{
+    width: 64px;
+    height: 64px;
+}
+
+.text-logo{
+    padding-top:10px;
+    margin-left: 5px;
+    color: var(--main-color);
+}
+
+
 .nav-logo a{
-    color: white;
+    color: #000000;
     text-decoration: none;
-    font-family: Georgia,serif;
+    font-family: 'Righteous',cursive;
 
 }
 
@@ -103,58 +118,79 @@ a{
    padding-left: 10px;
 }
 
+.f-letter-logo{
+    color: var(--orange-color);
+}
+
 
 .main-title{
     padding:0px 10px 0px 30px;
-    font-family: Georgia,serif;
     letter-spacing: 5px;
     font-size: 3rem;
+    color: var(--main-color);
+    font-family: 'Righteous',cursive;
 }
 
 .sub-title {
-    
-    font-family: Georgia, serif;
-    letter-spacing: 5px;
+    font-family: 'Noto Sans',sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
     font-size: 2rem;
 }
 
 
 .main-intro{
-    padding:20px 30px 0px 30px;
+    padding:20px 10px 0px 50px;
     font-size: 1.5rem;
-    text-align: justify;
+    
 }
 
 .main-button{
-    background-color:var(--dark-blue-color);
+    background-color:var(--main-color);
     padding:10px 30px;
     font-size: 1.5rem;
     text-align: center;
     border-radius: 30px;
     width: 280px;
-    color: var(--lighter-blue-color);
+    color: var(--white-color);
 }
 
 .main-button:hover{
-    background-color:var(--sky-blue-color);
-    color: var(--dark-blue-color);
+    background-color:var(--white-color);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
 }
 
 .event-button {
-    background-color: var(--dark-blue-color);
+    background-color: var(--main-color);
     font-size: 1rem;
     text-align: center;
-    border-radius: 30px;
-    padding: 5px 20px;
-    color: var(--lighter-blue-color);
+    border-radius: 50%;
+    color: var(--white-color);
 }
 
 .event-button:hover {
     background-color: var(--sky-blue-color);
-    color: var(--dark-blue-color);
+    color: var(--main-color);
 }
 
+.btn-circle {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 24px;
+}
 
+.btn-giftby{
+    background-color: var(--main-color) !important;
+    color: var(--white-color) !important;
+}
 
 
 .margin-top-30{
@@ -166,7 +202,7 @@ a{
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--dark-blue-color);
+    background-color: var(--main-color);
    
 }
 
@@ -181,7 +217,7 @@ a{
 
 
 .my-input {
-    border: 1px solid var(--dark-blue-color) ;
+    border: 1px solid var(--main-color) ;
     border-radius: 0.75rem;
     font-size: 1.25rem;
 }
@@ -193,14 +229,14 @@ a{
 
 .card-event{
     width: 100%;
-    border: 1px solid var(--dark-blue-color);
+    border: 1px solid var(--main-color);
     border-radius: 1rem;
 }
 
 .card-event .title{
     font-size: 1.25rem;
     font-weight: bold;
-    color:var(--dark-blue-color)
+    color:var(--main-color)
 }
 
 .card-event .description{
@@ -209,8 +245,23 @@ a{
 
 .card-event .party-date{
     font-size: 1.1rem;
-    color: var(--dark-blue-color);
+    color: var(--orange-color);
     
+}
+
+form div textarea{
+    height: 100px !important;
+    border: 1px solid var(--main-color) !important;
+    border-radius: 0.75rem !important;
+    font-size: 1.25rem !important;
+}
+
+
+.my-items{
+    margin:10px 0px 0px 0px;
+    border-radius: 0.75rem 0.75rem 0 0;
+    width: 100%;
+    padding-top: 10px;
 }
 
 

@@ -1,12 +1,5 @@
 <div class="row">
   <div class="col-12">
-    <h1 class="main-title fade-in-text">
-      GIFTBY
-    </h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
     <p class="main-intro">
       Giftby is a web application that allows you to create and manage your gift
       registry.
@@ -14,19 +7,25 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-center margin-top-30">
-  <a href="/owner" class="btn main-button btn-lg">
-    <i class="fas fa-plus"></i>
-    Create Event
-  </a>
-</div>
-
 {{#if loggedIn}}
   <div class="d-flex justify-content-center margin-top-30">
-    <button class="btn main-button btn-lg">
+    <a href="/dashboard" class="btn main-button btn-lg">
       <i class="fas fa-list-alt"></i>
       My Events
-    </button>
+    </a>
+  </div>
+  <div class="d-flex justify-content-center margin-top-30">
+    <a href="/create-event" class="btn main-button btn-lg">
+      <i class="fas fa-plus"></i>
+      Create Event
+    </a>
+  </div>
+{{else}}
+  <div class="d-flex justify-content-center margin-top-30">
+    <a href="/owner" class="btn main-button btn-lg">
+      <i class="fas fa-plus"></i>
+      Create Event
+    </a>
   </div>
 {{/if}}
 
