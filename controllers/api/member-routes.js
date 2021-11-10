@@ -149,6 +149,7 @@ router.post('/invite', (req, res) => {
         })
 });
 
+//one invite to a member
 router.post('/lottery/:id', (req, res) => {
     Member.findOne({
         where: {
@@ -168,7 +169,6 @@ router.post('/lottery/:id', (req, res) => {
                 res.status(404).json({message:'No member found with this id.'});
                 return;
             }
-            // res.json(dbMemberData);
             return dbMemberData.lotteryNotification();
         })
         .then(dbMemberData=> res.json(dbMemberData))
