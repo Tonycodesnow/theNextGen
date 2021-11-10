@@ -22,6 +22,26 @@ router.get("/", withAuth, (req, res) => {
         ],
       },
       {
+        
+        model: Member,
+        attributes: [
+          "id",
+          "name",
+          "event_id"
+        ],
+        include: [
+          {model: Event,
+            attributes: [
+              "id",
+              "name",
+              "description",
+              "lottery_date",
+              "budget",
+              "party_date",
+            ]}
+        ]
+      },
+      {
         model: Wishitem,
         attributes: ["name", "item_url"],
       },
@@ -29,6 +49,7 @@ router.get("/", withAuth, (req, res) => {
   })
     .then((dbUserData) => {
       const user = dbUserData.get({ plain: true });
+      // console.log(user.members[0].event);
       res.render("dashboard/home", { user, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
@@ -135,8 +156,7 @@ router.get("/lottery/:id", (req, res) => {
           "accepted",
           "acceptedDate",
           "invitationDate",
-          "giveToUser",
-          "receiveFromUser",
+          "giveToMember"
         ],
       },
     ],
