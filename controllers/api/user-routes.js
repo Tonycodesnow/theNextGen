@@ -1,5 +1,7 @@
 const router = require("express").Router();
+
 const { User, Event, Member, Wishitem } = require("../../models");
+
 
 //get all users
 router.get("/", (req, res) => {
@@ -121,7 +123,6 @@ router.post("/login", (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 //post signup
 router.post("/member-signup", (req, res) => {
