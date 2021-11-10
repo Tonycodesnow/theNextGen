@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {User , Event, Member} = require('../../models');
+const shuffle = require('./../../utils/shuffle');
 
 //get all events
 router.get('/' , (req, res) => {
@@ -12,7 +13,7 @@ router.get('/' , (req, res) => {
             },
             {
                 model: Member,
-                attributes: ['user_id', 'email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
+                attributes: ['user_id', 'email','accepted', 'acceptedDate', 'invitationDate', 'giveToMember']
             }
         ]
     })
@@ -36,7 +37,7 @@ router.get('/:id' , (req, res) => {
             },
             {
                 model: Member,
-                attributes: ['name','email','accepted', 'acceptedDate', 'invitationDate', 'giveToUser', 'receiveFromUser']
+                attributes: ['name','email','accepted', 'acceptedDate', 'invitationDate', 'giveToMember']
             }
         ]
     })
@@ -94,12 +95,12 @@ router.put('/:id', (req, res) => {
 })
 
 //TODO: shuffle/lottery
-router.post('/lottery/:id', (req, res) => {
+router.post('/shuffle/:id', (req, res) => {
     Member.findAll({
         where: {
             event_id: req.params.id,
             accepted: true,
-            giveToUser: null
+            giveToMember: null
         }
     })
         .then(dbMemberData => {
@@ -108,9 +109,11 @@ router.post('/lottery/:id', (req, res) => {
                 return;
             }
             //valdiation <3 ?
-            //do lottery
-            //update database
+            //do lottery and update db
+            return shuffle(dbMemberData);
             //send notifications ? with hook?
+        })
+        .then(dbMemberData =>{
             res.json(dbMemberData);
         })
         .catch(err => {

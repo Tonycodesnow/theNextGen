@@ -58,8 +58,7 @@ router.get("/event/:id", (req, res) => {
           "accepted",
           "acceptedDate",
           "invitationDate",
-          "giveToUser",
-          "receiveFromUser",
+          "giveToMember"
         ],
       },
     ],
