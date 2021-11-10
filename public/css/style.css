@@ -225,7 +225,7 @@ a{
 .card-login{
   margin-top: 30px;
   width: 100%;
-  height: 600px;
+  min-height: 600px;
   border: none;
   border-radius: 1rem;
 }
