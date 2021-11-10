@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { User, Event, Wishitem, Member } = require("../../models");
+
+const { User, Event, Member, Wishitem } = require("../../models");
+
 
 //get all users
 router.get("/", (req, res) => {
@@ -68,7 +70,6 @@ router.get("/:id", (req, res) => {
 
 //add user
 router.post("/", (req, res) => {
-  console.log(req.body);
   User.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
