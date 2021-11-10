@@ -56,7 +56,12 @@ async function sendInvitation(event) {
     },
     body: JSON.stringify(dataList),
   })
-  //TODO: Check response
-  console.log(response)
+
+  if (response.ok) {
+    document.location.replace(`/dashboard`);
+  } else {
+    showAlertMessage(response.statusText);
+
+  }
 
 };

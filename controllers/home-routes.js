@@ -36,8 +36,8 @@ router.get("/create-event", (req, res) => {
 });
 
 
-router.get("/invite/:id", (req, res) => {
-  res.render("invite");
+router.get("/invite-to-event/:id", (req, res) => {
+  res.render("invite",{ loggedIn: req.session.loggedIn });
 });
 
 
