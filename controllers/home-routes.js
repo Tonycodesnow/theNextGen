@@ -36,14 +36,16 @@ router.get("/create-event", (req, res) => {
 });
 
 
+
 router.get("/invite-to-event/:id", (req, res) => {
   res.render("invite",{ loggedIn: req.session.loggedIn });
 });
 
 
+router.get("/invite/:id", (req, res) => {
+  res.render("invite");
+});
 
-//   res.render("invite-to-event", { loggedIn: req.session.loggedIn });
-// });
 
 //Get Accept Memger page
 router.get("/member-signup/:id", (req, res) => {
