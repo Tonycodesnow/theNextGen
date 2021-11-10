@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Event, Wishitem } = require("../../models");
+const { User, Event, Member, Wishitem } = require("../../models");
 
 //get all users
 router.get("/", (req, res) => {
@@ -68,7 +68,6 @@ router.get("/:id", (req, res) => {
 
 //add user
 router.post("/", (req, res) => {
-  console.log(req.body);
   User.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -124,37 +123,49 @@ router.post("/login", (req, res) => {
 });
 
 
-//post login
+//post signup
 router.post("/member-signup", (req, res) => {
-  //BODY {first_name: "", last_name: "", email: "", password: "",eventId}
-  //TODO: Verify if the email is member
-  User.findOne({
+  let memberId= null;
+  console.log(req.body)
+  Member.findOne({
     where: {
       email: req.body.email,
+      event_id: req.body.event_id
     },
   })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(400).json({ message: "User not found" });
+    .then((dbMemberData) => {
+      if (!dbMemberData) {
+        res.status(400).json({ message: "Member not found" });
         return;
       }
+      memberId=dbMemberData.id;
+      return User.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password,
+        
+      })
 
-      const validPassword = dbUserData.checkPassword(req.body.password);
-
-      if (!validPassword) {
-        res.status(400).json({ message: "Incorrect password!" });
-        return;
-      }
-
-      //TODO: Update Member information accepting userId
-
-      req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.loggedIn = true;
-
-        res.json({ user: dbUserData, message: "You are now logged in!" });
-      });
     })
+    .then(dbUserData => {
+        req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.logged_in = true;
+      })
+      const member =  {
+        user_id: dbUserData.id,
+        accepted: true,
+        acceptedDate: new Date()
+      }
+
+      return Member.update( member, {
+        where: {
+          id: memberId
+        }
+      })
+    })
+    .then(dbMemberData => res.json({message: "You are now logged in!" }))
     .catch((err) => {
       console.error(err);
       res.status(500).json(err);
