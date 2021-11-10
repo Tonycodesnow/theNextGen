@@ -43,6 +43,7 @@ footer .container{
      justify-content: space-between;
 }
 
+
 nav{
     display: flex;
     flex-flow: row wrap;
@@ -59,6 +60,14 @@ nav{
 a{
     text-decoration: none;
     color: #000000;
+}
+
+.main-color{
+    color: var(--main-color) !important;
+}
+
+.orange-color{
+    color: var(--orange-color) !important;
 }
 
 .container-navbar{
@@ -177,6 +186,7 @@ a{
 
 .add-button {
     width: 100px;
+}
 
 .btn-circle {
     display: flex;
@@ -195,6 +205,7 @@ a{
 .btn-giftby{
     background-color: var(--main-color) !important;
     color: var(--white-color) !important;
+    border-radius: 15px;
 }
 
 
@@ -269,6 +280,18 @@ form div textarea{
     padding-top: 10px;
 }
 
+
+.show-element-flex{
+    display: flex !important;
+}
+
+.show-element {
+    display: inline-block !important;
+}
+
+.hide-element{
+    display: none !important;
+}
 
 
 

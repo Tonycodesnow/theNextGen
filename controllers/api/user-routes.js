@@ -123,6 +123,44 @@ router.post("/login", (req, res) => {
     });
 });
 
+
+//post login
+router.post("/member-signup", (req, res) => {
+  //BODY {first_name: "", last_name: "", email: "", password: "",eventId}
+  //TODO: Verify if the email is member
+  User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(400).json({ message: "User not found" });
+        return;
+      }
+
+      const validPassword = dbUserData.checkPassword(req.body.password);
+
+      if (!validPassword) {
+        res.status(400).json({ message: "Incorrect password!" });
+        return;
+      }
+
+      //TODO: Update Member information accepting userId
+
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.loggedIn = true;
+
+        res.json({ user: dbUserData, message: "You are now logged in!" });
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
+
 //post logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
