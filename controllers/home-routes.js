@@ -35,9 +35,17 @@ router.get("/create-event", (req, res) => {
   res.render("create-event", { loggedIn: req.session.loggedIn });
 });
 
+
+
+router.get("/invite-to-event/:id", (req, res) => {
+  res.render("invite",{ loggedIn: req.session.loggedIn });
+});
+
+
 router.get("/invite/:id", (req, res) => {
   res.render("invite");
 });
+
 
 //Get Accept Memger page
 router.get("/member-signup/:id", (req, res) => {

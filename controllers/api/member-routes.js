@@ -149,6 +149,35 @@ router.post('/invite', (req, res) => {
         })
 });
 
+//one invite to a member
+router.post('/lottery/:id', (req, res) => {
+    Member.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+            model: Member,
+            as: 'recipient',
+            attributes: ['name', 'id'],
+        },
+
+        ]
+    })
+        .then(dbMemberData => {
+            if (!dbMemberData) {
+                res.status(404).json({message:'No member found with this id.'});
+                return;
+            }
+            return dbMemberData.lotteryNotification();
+        })
+        .then(dbMemberData=> res.json(dbMemberData))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json(err);
+        })
+})
+
 
 
 router.put('/:id', (req, res) => {

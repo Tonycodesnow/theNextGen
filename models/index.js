@@ -35,4 +35,9 @@ Member.belongsTo(Event, {
     foreignKey: 'event_id'
 });
 
+Member.belongsTo(Member, {
+    foreignKey: 'giveToMember',
+    as: 'recipient'
+});
+
 module.exports = { User, Event, Member , Wishitem };
