@@ -1,18 +1,41 @@
 const buttonPlay = document.getElementById("buttonPlayLottery");
 const divAnimation = document.getElementById("divAnimation");
 const textAnimate = document.getElementById("textAnimate");
+const divCongratulations = document.getElementById("divCongratulations");
+const textDone = document.getElementById("textDone");
+const buttonAllAreHere = document.getElementById("buttonAllAreHere");
+const divMembers = document.getElementById("divMembers");
+const divPlay = document.getElementById("divPlay");
 
-function playLotteryHandler() {
-  const randomNumber = Math.floor(Math.random() * 100);
+let members = [];
+
+const eventId = window.location.toString().split("/")[
+  window.location.toString().split("/").length - 1
+];
+
+async function playLotteryHandler() {
+  const response = await fetch(`/api/events/${eventId}`);
+  const data = await response.json();
+
+  if (data.members.length === 0) {
+    alert("No members in this event");
+    return;
+  }
+
+  members = [...data.members];
+
   showAnimation();
-  const interval = setInterval(showText, 400);
+  const interval = setInterval(showText, 300);
 
-  setTimeout(function () {
+  setTimeout(async function () {
     //Call Api
-    alert(`You have won ${randomNumber}`);
+    const response = await fetch(`/api/events/${eventId}/lottery`);
+    const data = await response.json();
+    console.log("Lottery", data.members);
+
     hideAnimation();
     clearInterval(interval);
-  }, 5000);
+  }, 8000);
 }
 
 function showAnimation() {
@@ -24,28 +47,20 @@ function showAnimation() {
 function hideAnimation() {
   divAnimation.classList.add("hide-element");
   divAnimation.classList.remove("show-element-flex");
+  //Show Congratulations Div
+  divCongratulations.classList.remove("hide-element");
+  divCongratulations.classList.add("show-element-flex");
+  textDone.classList.add("animate__animated", "animate__fadeIn");
 }
 
 function showText() {
-  const members = [
-    {
-      name: "jose",
-    },
-    {
-      name: "Antonio",
-    },
-    {
-      name: "Sivan",
-    },
-    {
-      name: "Gocku",
-    },
-  ];
-
   const max = members.length;
-  textAnimate.innerHTML = `Working with ${
-    members[Math.floor(Math.random() * max)].name
-  }`;
+  textAnimate.innerHTML = `${members[Math.floor(Math.random() * max)].name}`;
 }
 
 buttonPlay.addEventListener("click", playLotteryHandler);
+
+buttonAllAreHere.addEventListener("click", () => {
+  divMembers.classList.add("hide-element");
+  divPlay.classList.remove("hide-element");
+});
