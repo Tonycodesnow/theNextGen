@@ -43,7 +43,7 @@ async function sendInvitation(event) {
   const inputList = inputEl.getElementsByTagName("input");
 
   let dataList = [];
-  for (let i = 0; i < inputId; i = i + 2) {
+  for (let i = 0; i < inputList.length; i = i + 2) {
     dataList.push({
       name: inputList.item(i).value,
       email: inputList.item(i + 1).value,
@@ -52,7 +52,7 @@ async function sendInvitation(event) {
     });
   }
 
-  const response = await fetch("/api/members/invite/1", {
+  const response = await fetch(`/api/members/invite/${event_id}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
