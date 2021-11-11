@@ -41,9 +41,13 @@ router.get('/:id' , (req, res) => {
                 attributes: ['name','email','accepted', 'acceptedDate', 'invitationDate', 'giveToMember']
             }
         ]
-
-
-
+    })
+    .then(dbEventData => {
+        if (!dbEventData) {
+            res.status(404).json({message: 'No event found with this id'});
+            return;
+        }
+        res.json(dbEventData);
     })
     .catch((err) => {
       console.error(err);
@@ -110,8 +114,7 @@ router.get("/:id/lottery", (req, res) => {
           "accepted",
           "acceptedDate",
           "invitationDate",
-          "giveToUser",
-          "receiveFromUser",
+          "giveToMember"
         ],
       },
     ],
@@ -150,6 +153,7 @@ router.post('/shuffle/:id', (req, res) => {
             //send notifications ? with hook?
         })
         .then(dbMemberData =>{
+            console.log(dbMemberData);
             res.json(dbMemberData);
         })
         .catch(err => {

@@ -10,10 +10,20 @@ class Member extends Model {
         //send notification
         //update database user_id accepted and acceptedDate
     }
-    lotteryNotification() {
+    async lotteryNotification() {
         //email notification
-        return sendNotification(buildNotification(this))
+        return await sendNotification(buildNotification(this))
 
+    }
+    getEmail() {
+        return this.email;
+    }
+    async getNameToGift() {
+        return await Member.findOne({
+            where:{
+                id: this.giveToMember
+            }
+        })
     }
 };
 
@@ -54,6 +64,10 @@ Member.init(
             key: "id",
         }
     },
+    giveToMemberName: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     user_id: {
         type: DataTypes.INTEGER,
         references: {
@@ -70,10 +84,19 @@ Member.init(
     },
     },
     {
+        hooks: {
+            async afterUpdate(member,options) {
+                if (!member.giveToMember) {
+                    return;
+                }
+                 return await member.lotteryNotification();
+            }
+        },
         sequelize,
         freezeTableName: true,
         underscored: true,
         modelName: "member",
+        
     }
 );
 

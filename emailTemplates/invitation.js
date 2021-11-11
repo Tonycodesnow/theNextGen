@@ -6,7 +6,7 @@ function buildInvitation(event,emailList) {
 //create invitation body
 const htmlBody= `<h2>You're Invited to ${event.user.first_name}'s ${event.name}</h2>
 <p>${event.user.first_name} invited you to join a ${event.name}! Date: ${event.party_date}, The budget is $${event.budget}. 
-If you would like to join click here. </p>
+If you would like to join click <a href="https://secret-santa-project.herokuapp.com/member-signup/${event.id}"> here</a>. </p>
 <p>Join Our Game!! Please join by ${event.lottery_date}, On this date the lottorey will take place  </p>`
 
 const mailContent = {

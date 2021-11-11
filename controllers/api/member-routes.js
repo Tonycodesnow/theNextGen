@@ -161,7 +161,6 @@ router.post('/lottery/:id', (req, res) => {
             as: 'recipient',
             attributes: ['name', 'id'],
         },
-
         ]
     })
         .then(dbMemberData => {

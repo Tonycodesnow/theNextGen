@@ -10,7 +10,8 @@ function shuffle(array) {
     const random = Math.floor(Math.random() * newNameList.length);
     const selected = newNameList[random];
     nameList = nameList.filter((item) => item != selected);
-    return { id: player, giveToMember: selected };
+    console.log(selected);
+    return { id: player.id, giveToMember: selected ,giveToMemberName: selected.name };
   });
 
   return orderArray;
@@ -19,19 +20,29 @@ function shuffle(array) {
 
 //validate shuffle and update db.
 async function main(data) {
-  const memberIds = data.map(member => member.id)
-  let result = shuffle(memberIds);
-  console.log(result);
+  // const memberIds = data.map(member => member.id)
+  let result = shuffle(data);
+  // const memberIds = data.map(member => member.id)
+  // let result = shuffle(memberIds);
+  // console.log(result);
   
   while (!result[result.length - 1].giveToMember) {
     result = shuffle(memberIds); 
   }
-  console.log(result);
+  // console.log(result);
   return await result.map(member => {
     return Member.update(member , {
       where: {
         id: member.id
-      }
+      },
+      // include: [
+      //   {
+      //     model: Member,
+      //     as: 'recipient',
+      //     attribute: ['id','name']
+      //   }
+      // ],
+      individualHooks: true
     })
   });
   
