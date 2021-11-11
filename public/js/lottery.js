@@ -29,7 +29,7 @@ async function playLotteryHandler() {
 
   setTimeout(async function () {
     //Call Api
-    const response = await fetch(`/api/events/${eventId}/lottery`);
+    const response = await fetch(`/api/events/shuffle/${eventId}`);
     const data = await response.json();
     console.log("Lottery", data.members);
 
