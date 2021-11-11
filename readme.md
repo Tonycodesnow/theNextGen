@@ -54,7 +54,7 @@ JavaScript, CSS, Bootstrap v5, Animate.JS, LottieFiles, Google Fonts, Material I
 
 ## License
 
-  This project is licensed under the MIT license. <br />
+This project is licensed under the MIT license. <br />
 
 ## Contributers 
 
