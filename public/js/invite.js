@@ -52,7 +52,7 @@ async function sendInvitation(event) {
     });
   }
 
-  const response = await fetch("/api/members/invite/1", {
+  const response = await fetch(`/api/members/invite/${eventId}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
