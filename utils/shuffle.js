@@ -27,13 +27,20 @@ async function main(data) {
     result = shuffle(memberIds); 
   }
   console.log(result);
-  return await result.map(member => {
-    return Member.update(member , {
-      where: {
-        id: member.id
-      }
-    })
-  });
+  // const updateResults = await result.map(member => {
+  //   Member.update(member , {
+  //     where: {
+  //       id: member.id
+  //     }
+  //   }).then(member =>  member)
+  //   .catch((err) => {
+  //     console.log(err);
+  //     return err;
+  //   });
+  //   console.log(updateResults);
+  //   return updateResults;
+  // });
+  return result;
   
   // return result;
 }

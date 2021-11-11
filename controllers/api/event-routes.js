@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Event, Member } = require("../../models");
 const shuffle = require("./../../utils/shuffle");
 
+
 //get all events
 router.get("/", (req, res) => {
   Event.findAll({
@@ -117,21 +118,64 @@ router.get("/shuffle/:id", (req, res) => {
       accepted: true,
       giveToMember: null,
     },
+    include: [
+        {
+          model: Member,
+          as: "recipient",
+          attributes: ["name", "id"],
+        },
+      ],
   })
-    .then((dbMemberData) => {
+    .then(async (dbMemberData) => {
       if (!dbMemberData) {
         res(404).json({
           message: "There are no members to shuffle for this event id",
         });
         return;
       }
-      //valdiation <3 ?
       //do lottery and update db
-      return shuffle(dbMemberData);
-      //send notifications ? with hook?
+      return await shuffle(dbMemberData);
+    })
+    .then(async (dbMemberData) => {   
+        console.log('===================shuffle results')
+        console.log(dbMemberData);
+        const updateData= await dbMemberData.map(async (member) => {
+            return await Member.update(member,{
+            where: {
+                id: member.id
+            }
+        })
+    })
+
+        return await Promise.all(updateData);
     })
     .then((dbMemberData) => {
-      res.json(dbMemberData);
+        console.log(dbMemberData);
+        return Member.findAll({
+            where: {
+              event_id: req.params.id,
+              accepted: true,
+            },
+            include: [
+                {
+                  model: Member,
+                  as: "recipient",
+                  attributes: ["name", "id"],
+                },
+              ],
+          })
+
+    })
+    .then(dbMemberData => {
+        console.log(dbMemberData);
+        return dbMemberData.forEach(member=> member.lotteryNotification());
+        
+    })
+    .then(dbMemberData => {
+        console.log(dbMemberData);
+
+        res.json({message:'Shuffle is done notification sent to member email'});
+        
     })
     .catch((err) => {
       console.error(err);
