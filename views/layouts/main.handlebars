@@ -43,17 +43,25 @@
       {{> navbar}}
     </header>
     <div class="container">
+      {{#if loggedIn}}
+      <div class="d-flex justify-content-center mb-3">
+        <a href="/dashboard" class="btn main-button btn-lg">
+          <i class="fas fa-list-alt"></i>
+          My Events
+        </a>
+      </div>
+      {{/if}}
       {{{body}}}
     </div>
     
     <footer>
-      <div class="container">
-      <div>
-        <a href="/">
-         Giftby
-        </a>
-       </div>
-         <div><a href="/privacy-policy">Privacy Policy</a></div>
+      <div class="container container-flex">
+          <div>
+            <a href="/">Giftby</a>
+          </div>
+          <div>
+            <a href="/privacy-policy">Privacy Policy</a>
+          </div>
         </div>
     </footer>
 

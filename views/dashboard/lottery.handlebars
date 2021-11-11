@@ -31,12 +31,20 @@
 
 <div
   id="divMembers"
-  class="d-flex flex-column align-items-center text-center mt-4 animate__animated animate__fadeIn animate__delay-1s"
+  class="d-flex flex-column align-items-center mt-4 animate__animated animate__fadeIn animate__delay-1s"
 >
   <h3>Members</h3>
   <ol>
     {{#each event.members}}
-      <li>{{name}}</li>
+      <li>
+        {{name}}
+        {{#if accepted}}
+          <span class="badge rounded-pill bg-success">Accepted</span>
+        {{else}}
+          <span class="badge rounded-pill bg-warning">Waiting</span>
+        {{/if}}
+
+      </li>
     {{/each}}
   </ol>
   <button type="button" id="buttonAllAreHere" class="btn main-button btn-lg">

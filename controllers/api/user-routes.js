@@ -173,6 +173,10 @@ router.post("/member-signup", (req, res) => {
     });
 });
 
+
+
+
+
 //post logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
