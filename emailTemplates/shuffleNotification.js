@@ -3,7 +3,7 @@ function buildNotification(member) {
   //create Notification body
   console.log(member);
   console.log(member.recipient);
-  const htmlBody= `Hello ${member.name}, You got ${member.recipient.name}`
+  const htmlBody= `Hello ${member.name}! You will be ${member.recipient.name}'s Secret Santa!'`
   // `<h2>You're Invited to ${event.user.first_name}'s ${event.name}</h2>
   // <p>${event.user.first_name} invited you to join a ${event.name}! Date: ${event.party_date}, The budget is $${event.budget}. 
   // If you would like to join click here. </p>
