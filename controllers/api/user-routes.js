@@ -80,7 +80,7 @@ router.post("/", (req, res) => {
     .then((dbUserData) => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.logged_in = true;
+        req.session.loggedIn = true;
 
         res.json(dbUserData);
       });
@@ -152,7 +152,7 @@ router.post("/member-signup", (req, res) => {
     .then(dbUserData => {
         req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.logged_in = true;
+        req.session.loggedIn = true;
       })
       const member =  {
         user_id: dbUserData.id,

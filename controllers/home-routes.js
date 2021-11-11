@@ -32,6 +32,7 @@ router.get("/owner", (req, res) => {
 
 //Get create Event page
 router.get("/create-event", (req, res) => {
+  console.log( req.session.loggedIn)
   res.render("create-event", { loggedIn: req.session.loggedIn });
 });
 
