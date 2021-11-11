@@ -1,0 +1,39 @@
+<h1 class="animate__animated animate__slideInLeft">Welcome
+  {{user.first_name}}
+  {{user.last_name}}
+</h1>
+
+<div class="row mt-4 animate__animated animate__fadeIn animate__delay-1s">
+  <div class="col-12">
+    <div class="d-flex justify-content-center mb-3">
+      <h2>Manage Your Events</h2>
+    </div>
+    {{#each user.events as |event|}}
+      <div class="card card-event mb-2">
+        <div class="card-body">
+          <div class="d-flex justify-content-start">
+            <h3 class="title">{{event.name}}</h3>
+          </div>
+          <div class="d-flex justify-content-start">
+            <span class="party-date">
+              <i class="fas fa-gifts"></i>
+              {{daysLeft event.party_date}}
+            </span>
+          </div>
+          <hr />
+          <p class="description">{{event.description}}</p>
+          <div class="d-flex justify-content-end">
+            <div class="event-button">
+              <a
+                href="../dashboard/event/{{event.id}}"
+                class="btn btn-default btn-giftby"
+              >
+                <i class="far fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
