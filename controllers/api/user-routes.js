@@ -127,7 +127,6 @@ router.post("/login", (req, res) => {
 //post signup
 router.post("/member-signup", (req, res) => {
   let memberId= null;
-  console.log(req.body)
   Member.findOne({
     where: {
       email: req.body.email,

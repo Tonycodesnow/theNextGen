@@ -179,7 +179,7 @@ router.get("/shuffle/:id", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res(500).json(err);
+      res.status(500).json(err);
     });
 });
 

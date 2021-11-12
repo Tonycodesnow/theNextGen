@@ -3,6 +3,7 @@ const routes = require("./controllers");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const helpers = require("./utils/helpers");
+const sequelize = require("./config/connection");
 const hbs = exphbs.create({ helpers });
 const sequelize = require("./config/connection");
 
