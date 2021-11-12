@@ -21,7 +21,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Patua+One&family=Righteous&display=swap" rel="stylesheet">
 
 
     <!-- animate js-->
@@ -43,16 +43,26 @@
       {{> navbar}}
     </header>
     <div class="container">
+      {{#if loggedIn}}
+      <div class="d-flex justify-content-center mb-3">
+        <a href="/dashboard" class="btn main-button btn-lg">
+          <i class="fas fa-list-alt"></i>
+          My Events
+        </a>
+      </div>
+      {{/if}}
       {{{body}}}
     </div>
     
     <footer>
-      <div>
-        <a href="/">
-        Gitfby
-        </a>
-       </div>
-      <div><a href="/privacy-policy">Privacy Policy</a></div>
+      <div class="container container-flex">
+          <div>
+            <a href="/">Giftby</a>
+          </div>
+          <div>
+            <a href="/privacy-policy">Privacy Policy</a>
+          </div>
+        </div>
     </footer>
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
@@ -61,5 +71,9 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/utils.js"></script>
+     {{#if loggedIn}}
+            <script src="/js/logout.js"></script>
+        {{/if}}
   </body>
 </html>

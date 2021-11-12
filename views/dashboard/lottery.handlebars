@@ -1,0 +1,112 @@
+<div class="card card-event mb-2">
+  <div class="card-body">
+    <div class="d-flex align-items-center justify-content-start">
+      <div>
+        <h3 class="title">{{event.name}}</h3>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start">
+      <div>
+        <i class="fas fa-gifts orange-color"></i>
+        {{daysLeft event.party_date}}
+      </div>
+
+    </div>
+    <hr class="my-1" />
+    <p class="description main-color">{{event.description}}</p>
+    <div class="d-flex flex-column justify-content-start">
+      <div class="mb-2">
+        <i class="fas fa-gifts main-color"></i>
+        Party Date:
+        {{event.party_date}}
+      </div>
+      <div>
+        <i class="fas fa-random orange-color"></i>
+        Lottery Date:
+        {{event.lottery_date}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="divMembers"
+  class="d-flex flex-column align-items-center mt-4 animate__animated animate__fadeIn animate__delay-1s"
+>
+  <h3>Members</h3>
+  <ol>
+    {{#each event.members}}
+      <li>
+        {{name}}
+        {{#if accepted}}
+          <span class="badge rounded-pill bg-success">Accepted</span>
+        {{else}}
+          <span class="badge rounded-pill bg-warning">Waiting</span>
+        {{/if}}
+
+      </li>
+    {{/each}}
+  </ol>
+  <button type="button" id="buttonAllAreHere" class="btn main-button btn-lg">
+    <i class="fas fa-random"></i>
+    All are here
+  </button>
+</div>
+
+<div id="divPlay" class="d-flex justify-content-center mt-4 hide-element">
+  <button type="button" id="buttonPlayLottery" class="btn main-button btn-lg">
+    <i class="fas fa-random"></i>
+    Play Lottery
+  </button>
+
+</div>
+
+<div
+  class="d-flex flex-column align-items-center hide-element"
+  id="divAnimation"
+>
+  <lottie-player
+    src="https://assets10.lottiefiles.com/datafiles/bNwYPnjv3OdFA5w/data.json"
+    background="transparent"
+    speed="1"
+    style="width: 300px; height: 300px;"
+    autoplay
+    loop
+  ></lottie-player>
+  <div class="d-flex flex-column align-items-center text-center">
+    <h4>Assigning</h4>
+    <h4 id="textAnimate"></h4>
+  </div>
+</div>
+
+<div class="row hide-element" id="divCongratulations">
+  <div
+    style="display: inline-flex;position:relative;flex-direction: column;justify-content: center;align-items: center;min-height: 300px;"
+  >
+    <div
+      style="z-index: 1;position:absolute;top:0px; left:50%; margin-left: -150px;"
+    >
+      <lottie-player
+        src="https://assets4.lottiefiles.com/packages/lf20_wgcqrpue.json"
+        background="transparent"
+        speed="1"
+        style="width: 300px; height: 300px;"
+        autoplay
+        loop
+      ></lottie-player>
+    </div>
+    <div>
+      <h3><span id="textDone">Shuffle Done</span></h3>
+    </div>
+  </div>
+  <div
+    class="d-flex justify-content-center animate__animated animate__fadeIn animate__delay-1s"
+  >
+    <a href="/dashboard" class="btn main-button btn-lg">
+      <i class="fas fa-random"></i>
+      Dashboard
+    </a>
+  </div>
+</div>
+
+<script src="/js/lottery.js"></script>

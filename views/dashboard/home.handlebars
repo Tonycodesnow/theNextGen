@@ -1,42 +1,63 @@
 <h1 class="animate__animated animate__slideInLeft">Welcome
-  {{user.firstName}}
-  {{user.lastName}}</h1>
-<div class="d-flex justify-content-center mt-4">
+  {{user.first_name}}
+  {{user.last_name}}</h1>
+<div class="d-flex flex-column align-items-center mt-4">
   <a
-    href="/owner"
-    class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s"
+    href="/dashboard/my-wishlist/{{user.id}}"
+    class="btn main-button btn-lg animate__animated animate__fadeIn mb-3"
   >
     <i class="fas fa-clipboard-check"></i>
     My Wish List
   </a>
+  <a
+    href="/create-event"
+    class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-1s mb-3"
+  >
+    <i class="fas fa-plus"></i>
+    Create Event
+  </a>
+  {{#if user.events.length}}
+    <a
+      href="/dashboard/manager-events"
+      class="btn main-button btn-lg animate__animated animate__fadeIn animate__delay-2s"
+    >
+      <i class="fas fa-user-cog"></i>
+      Admin Events
+    </a>
+  {{/if}}
 </div>
 
-<div class="row mt-4 animate__animated animate__fadeIn animate__delay-2s">
+<div class="row mt-4 animate__animated animate__fadeIn animate__delay-1s">
   <div class="col-12">
     <div class="d-flex justify-content-center mb-3">
-      <h2>My Events</h2>
+      <h2>Your Events</h2>
     </div>
-    {{#each user.events}}
+    {{#each user.members as |member|}}
       <div class="card card-event mb-2">
         <div class="card-body">
           <div class="d-flex justify-content-start">
-            <h3 class="title">{{name}}</h3>
+            <h3 class="title">{{member.event.name}}</h3>
           </div>
           <div class="d-flex justify-content-start">
             <span class="party-date">
               <i class="fas fa-gifts"></i>
-              {{daysLeft party_date}}
+              {{daysLeft member.party_date}}
             </span>
           </div>
           <hr />
-          <p class="description">{{description}}</p>
-          <div class="d-flex justify-content-end">
-            <div class="event-button">
-              <a href="dashboard/event/{{id}}" class="btn event-button">
-                View
-              </a>
-            </div>
-          </div>
+          <p class="description">{{member.event.description}}</p>
+          <p>
+            <strong>Give to: </strong>
+            {{#if member.give_to_member}}
+              {{member.recipient.name}}
+              <a
+                href="/dashboard/member-wishlist/{{member.recipient.user_id}}"
+              >wishlist</a>
+            {{else}}
+              <span class="badge bg-secondary">No set yet</span>
+            {{/if}}
+
+          </p>
         </div>
       </div>
     {{/each}}

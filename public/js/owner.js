@@ -1,22 +1,25 @@
 async function loginformHandle(event) {
   event.preventDefault();
 
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
+  const first_name = document.getElementById("firstName").value;
+  const last_name = document.getElementById("lastName").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   const data = {
     email,
     password,
-    firstName,
-    lastName,
+    first_name,
+    last_name,
   };
 
-  console.log(data);
+  if (!validateEmail(data.email)) {
+    showAlertMessage("Please enter a valid email address");
+    return;
+  }
 
   //Call the api
-  const response = await fetch("/api/users/create-owner", {
+  const response = await fetch("/api/users", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -25,17 +28,19 @@ async function loginformHandle(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+
+    document.location.replace("/create-event");
+
   } else {
-    showAlertMessage();
+    showAlertMessage(response.statusText);
   }
 }
 
-function showAlertMessage() {
+function showAlertMessage(message) {
   const alert = document.querySelector(".alert");
   const spanText = document.querySelector(".alert-text");
 
-  spanText.innerText = "Invalid email or password";
+  spanText.innerText = message;
   alert.style.display = "block";
 }
 

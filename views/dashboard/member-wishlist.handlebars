@@ -1,7 +1,7 @@
 <div class="row mt-4 animate__animated animate__fadeIn animate__delay-1s">
   <div class="col-12">
     <div class="d-flex justify-content-center mb-3">
-      <h2>Wishlist of {{user.firstName}} {{user.lastName}}</h2>
+      <h2>Wishlist of {{user.first_name}} {{user.last_name}}</h2>
     </div>
     {{#each user.wishitems}}
       <div class="card card-event mb-2">
@@ -19,13 +19,5 @@
         </div>
       </div>
     {{/each}}
-  </div>
-  <div class="col-12">
-    <div class="d-flex justify-content-center mt-3">
-      <a href="/dashboard" class="btn main-button btn-lg btn-block">
-        <i class="fas fa-angle-double-left"></i>
-        Back
-      </a>
-    </div>
   </div>
 </div>

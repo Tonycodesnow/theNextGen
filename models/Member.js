@@ -1,23 +1,20 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+const sendNotification = require('./../utils/sendNotification');
+const buildNotification = require('./../emailTemplates/shuffleNotification');
+
+
 
 class Member extends Model {
-    inviteMember() {
-        // code to send invite notification 
-        //update database invitationDate
-    }
     inviteResponse() {
         //send notification
         //update database user_id accepted and acceptedDate
     }
-    lottery() {
-        //make lottery anf update  give and recieve
+    lotteryNotification() {
         //email notification
+        return sendNotification(buildNotification(this))
 
-        //need to update Event
     }
-
-
 };
 
 Member.init(    
@@ -43,10 +40,10 @@ Member.init(
         type: DataTypes.DATEONLY,
         allowNull: true
     },
-    giveToUser: {
+    giveToMember: {
         type: DataTypes.INTEGER,
         references: {
-            model: "user",
+            model: "member",
             key: "id",
         }
     },
