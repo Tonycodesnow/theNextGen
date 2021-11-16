@@ -36,7 +36,7 @@ This application will help you, your friends and/or family create a secret santa
 
 To run the application, type the link below:
 ```
-https://the-giftby.herokuapp.com/owner
+https://the-giftby.herokuapp.com/
 ```
 ## Screenshots
 
